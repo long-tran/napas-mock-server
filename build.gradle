@@ -1,0 +1,30 @@
+plugins {
+    // Apply the groovy plugin to add support for Groovy
+    id 'groovy'
+}
+
+task q2 (dependsOn: 'classes', type: JavaExec) {
+    main = 'org.jpos.q2.Q2'
+    classpath = sourceSets.main.runtimeClasspath
+    args '-d', 'q2-xml'
+}
+
+
+dependencies {
+    // Use the latest Groovy version for building this library
+    compile 'org.codehaus.groovy:groovy-all:2.4.14'
+    // https://mvnrepository.com/artifact/org.jpos/jpos
+    compile group: 'org.jpos', name: 'jpos', version: '2.1.1'
+
+    // Use the awesome Spock testing and specification framework
+    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
+    
+}
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    // Use jcenter for resolving your dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+    maven { url 'http://download.oracle.com/maven' }
+}

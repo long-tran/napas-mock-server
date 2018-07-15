@@ -1,0 +1,22 @@
+<script name="test-mock-server-initiate-message-back-to-mux">
+        /**
+        import org.jpos.util.NameRegistrar;
+        import org.jpos.iso.ISOServer;
+        **/
+        try {
+            org.jpos.iso.ISOServer server = (org.jpos.iso.ISOServer) org.jpos.util.NameRegistrar.get("server.napas-server-simulator-8001"); 
+            log.info("-- Channel names: " + server.	getISOChannelNames());
+            org.jpos.iso.ISOMsg m = new org.jpos.iso.ISOMsg("0800"); 
+            
+            m.set (3, "40A000"); 
+            m.set (11, "000019"); 
+            m.set (12, "122355"); 
+            m.set (32, "9170400"); 
+            m.set (37, "NAPAS001"); 
+            m.set (52, "BAFBAFBAF".getBytes());
+            server.	getLastConnectedISOChannel().send(m);
+        } catch (org.jpos.util.NameRegistrar.NotFoundException e) {
+            log.error("Mux 'napas-mux-at-bank' not found, do you have a 'XX_mux_napas_at_bank.xml' file?",e);
+        }
+ 
+</script>

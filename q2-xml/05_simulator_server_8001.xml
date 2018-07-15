@@ -1,0 +1,11 @@
+<qserver name="napas-server-simulator-8001" logger="Q2">
+    <attr name="port" type="java.lang.Integer">8001</attr>
+    <channel 
+        header="6000000000"
+        class="org.jpos.iso.channel.NACChannel"
+        packager="devatnight.napas.NapasPackager">
+    </channel>
+    <request-listener class="org.jpos.bsh.BSHRequestListener" logger="Q2" realm="napas-simulator-server-8001-listener">
+        <property name="source" value="q2-xml/scripts/napas-simulator-server-8001-listener.bsh" />
+    </request-listener>
+</qserver>

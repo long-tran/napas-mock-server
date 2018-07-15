@@ -1,0 +1,14 @@
+log.info("----- I AM MOCK NAPAS, ON PORT 8001, RECEIVED -----");
+log.info(message);
+if (!message.isRequest()) {
+    log.info("Message is not a request. Ignoring it");
+    return false;
+}
+String rc = message.getString(11);
+if (rc == null || rc.length() < 2) rc = "00";
+rc = rc.substring(rc.length() - 2, rc.length());
+message.setResponseMTI();
+message.set(39, rc);
+source.send(message);
+log.info("----- I AM MOCK NAPAS, FINISH -----");
+return true;
